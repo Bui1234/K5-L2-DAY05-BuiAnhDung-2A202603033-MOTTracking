@@ -151,12 +151,65 @@ Track | Nhãn | Frame thấy | Keyframe | KF/100 frame | Frame occluded | Lần 
 4 | person | 133 | 81 | 60.9 | 22 | 2
 
 [CẢNH BÁO] Track 0: 50 keyframe / 100 frame > 50.
-[CẢNH BÁO] Track 1: 62 keyframe / 100 frame > 50.
-[CẢNH BÁO] Track 2: 60 keyframe / 100 frame > 50.
-[CẢNH BÁO] Track 4: 61 keyframe / 100 frame > 50.
+### Tóm tắt kết quả `src/check_submission.py`
 
-Tổng: 321 keyframe / 647 frame có mặt = 49.6 keyframe / 100 frame
-[OK] Đọc được 5 track từ annotations.xml.
+Số frame được tính theo CVAT, bắt đầu từ 0. Trong file `gt.txt`, `frame_id = frame CVAT + 1`.
+
+#### 1. Kết quả kiểm tra file MOT 1.1
+
+File kiểm tra: `BuiAnhDung_mot.zip`
+
+- Số track ID: **5**
+- Tổng số bounding box: **647**
+- Kết quả: **[OK] Đúng 5 track ID.**
+
+| Track ID (MOT) | Frame có mặt | Số frame | Đoạn vắng (outside) |
+|---|---:|---:|---|
+| 1 | 0–149 | 147 | 41–43 |
+| 2 | 0–149 | 150 | Không có |
+| 3 | 0–104 | 105 | Không có |
+| 4 | 0–149 | 133 | 120–124, 137–148 |
+| 5 | 38–149 | 112 | Không có |
+
+**Các cảnh báo về thay đổi chiều cao bounding box:**
+
+- Track 1: chiều cao box thay đổi trên 30% trong một frame tại frame 48.
+- Track 4: chiều cao box thay đổi trên 30% trong một frame tại frame 119.
+- Track 5: chiều cao box thay đổi trên 30% trong một frame tại các frame 39, 63 và 64.
+
+Đây là các cảnh báo cần kiểm tra lại bounding box tại những frame tương ứng, không mặc nhiên đồng nghĩa với lỗi gán ID.
+
+#### 2. Kết quả kiểm tra file CVAT for video 1.1
+
+File kiểm tra: `BuiAnhDung_cvat_video.zip`
+
+Bảng dưới đây sử dụng Track ID theo thứ tự trong CVAT, bắt đầu từ 0.
+
+| Track ID (CVAT) | Nhãn | Frame thấy | Keyframe | KF/100 frame | Frame occluded | Lần bật outside |
+|---|---|---:|---:|---:|---:|---:|
+| 0 | person | 147 | 74 | 50.3 | 10 | 1 |
+| 1 | person | 112 | 69 | 61.6 | 33 | 0 |
+| 2 | person | 150 | 90 | 60.0 | 41 | 0 |
+| 3 | person | 105 | 7 | 6.7 | 1 | 1 |
+| 4 | person | 133 | 81 | 60.9 | 22 | 2 |
+
+**Các cảnh báo về mật độ keyframe:**
+
+- Track 0: 50 keyframe/100 frame.
+- Track 1: 62 keyframe/100 frame.
+- Track 2: 60 keyframe/100 frame.
+- Track 4: 61 keyframe/100 frame.
+
+Các track trên có mật độ keyframe lớn hơn 50 keyframe/100 frame theo ngưỡng cảnh báo của script.
+
+#### 3. Tổng hợp
+
+- Tổng số keyframe: **321**.
+- Tổng số frame có mặt: **647**.
+- Mật độ trung bình: **49.6 keyframe/100 frame**.
+- Kết quả đọc file `annotations.xml`: **[OK] Đọc được 5 track**.
+
+Như vậy, script xác nhận file xuất có đủ 5 track ID và đọc được dữ liệu CVAT. Tuy nhiên, các cảnh báo về thay đổi kích thước bounding box và mật độ keyframe cần được xem xét thêm bằng cách kiểm tra trực tiếp trên CVAT.
 
 ## 6. Ba câu kết
 
