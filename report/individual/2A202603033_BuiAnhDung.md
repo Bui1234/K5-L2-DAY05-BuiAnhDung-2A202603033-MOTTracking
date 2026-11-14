@@ -88,9 +88,9 @@ Người có nhiều keyframe nhất là **P2 (90 keyframe)**. Kết quả valid
 **Quyết định giữ ID hay tạo ID mới và lý do:** Cần xác nhận theo thao tác thực tế trên CVAT. Khi quyết định, cần xét ba yếu tố: thời gian khuất so với ngưỡng 60 frame; đặc điểm ngoại hình trước và sau khi xuất hiện; hướng và tốc độ di chuyển tại vị trí xuất hiện lại. Không thể xác định chắc chắn ba yếu tố này chỉ từ bảng tổng hợp validator.
 
 **Ảnh chụp màn hình:** Bổ sung ảnh thực tế vào thư mục `report/individual/images/` và giữ đúng tên:
-- `images/che_1_truoc.jpg`
-- `images/che_2_giua.jpg`
-- `images/che_3_sau.jpg`
+![Ảnh trước](images/che_1_truoc.jpg)
+![Ảnh giữa](images/che_2_giua.jpg)
+![Ảnh sau](images/che_3_sau.jpg)
 
 ## 4. Tự review ID (CP3)
 
@@ -124,7 +124,6 @@ Lỗi chỉ lượt 2 (theo cảnh) mới thấy: Chưa có kết quả review �
 
 **Tóm tắt kết quả `src/check_submission.py`:**
 
-```text
 Số frame in theo CVAT (bắt đầu từ 0). Trong gt.txt, frame_id = frame CVAT + 1.
 
 === File MOT 1.1: BuiAnhDung_mot.zip ===
